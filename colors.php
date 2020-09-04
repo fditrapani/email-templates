@@ -4,6 +4,7 @@
  	'white' => "#FFFFFF",
  	'background' => "#F3F6F8",
  	'text' => '#353535',
+ 	'success' => '#007E65',
  	'error' => '#FF001F',
  	'link' => '#1282D6',
  	'border' => '#DCDCDE'

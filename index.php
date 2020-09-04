@@ -21,7 +21,8 @@
 
 	<?php
 		$listOfPages = renderUnorderedList( array( 
-				2 => '<a href="expired.php" class="text-link">' . renderRegularText("Expired") . '</a>' 
+				1 => '<a href="expired.php" class="text-link">' . renderRegularText("Expired") . '</a>',
+				2 => '<a href="expiring.php" class="text-link">' . renderRegularText("Expiring") . '</a>' 
 		), "checkmark");
 
 		echo renderEmailTemplate( "Email templates", $listOfPages );

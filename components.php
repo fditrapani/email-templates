@@ -7,7 +7,7 @@ function renderVerticalSpacer( $size = "20px" ) {
 		<!-- VerticalSpacer start -->
 			<table width="100%" cellpadding="0" cellspacing="0">
 				<tr>
-					<td style="padding: 0" height="$size">&nbsp;</td>
+					<td style="padding: 0;" height="$size">&nbsp;</td>
 				</tr>
 			</table>
 		<!-- VerticalSpacer end -->
@@ -164,7 +164,6 @@ function renderUnorderedList( $list, $icon ) {
 }
 
 function renderItem( $itemTitle, $itemStatus, $itenStatusMessage, $itemDescription) {
-	$color = include("colors.php");
 	$title = renderBoldText( $itemTitle );
 	$status = renderBoldText( $itenStatusMessage, $itemStatus );
 	$description = renderRegularText( $itemDescription );
@@ -190,6 +189,27 @@ function renderItem( $itemTitle, $itemStatus, $itenStatusMessage, $itemDescripti
 	EOD;
 
 	return $item;
+}
+
+function renderItemVariant( $itemTitle, $itemDescription, $itemStatus, $statusColor ) {
+	$title = renderBoldText( $itemTitle );
+	$verticalSpacer = renderVerticalSpacer("0px");
+	$horizontalRule = renderHorizontalRule();
+	$description = renderRegularText( $itemDescription );
+	$status = renderBoldText( $itemStatus, $statusColor );
+	$manageSubscriptionButton = renderTextButton("Manage Subscription");
+
+	$itemVariant = <<<EOD
+		$horizontalRule
+		<p style="margin-top: 20px;">
+			$title <br/>
+			$description
+		</p>
+
+		<span style="margin-right:16px;">$status</span> $manageSubscriptionButton
+	EOD;
+
+	return $itemVariant;	
 }
 
 function renderPrimaryButton( $buttonCta ) {
