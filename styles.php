@@ -3,6 +3,13 @@ function renderStyles(){
 	$color = include("colors.php");
 
 	return ("
+		@media only screen and (min-width: 600px) {
+			.contentCard {
+				padding-left: 20px;
+				padding-right: 20px;
+			}
+		}
+
 		.text-link:hover {
 			text-decoration: none;
 		}
