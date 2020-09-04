@@ -218,17 +218,25 @@ function renderTextButton( $text, $textColor = "#1282D6" ){
 	return $textButton;
 }
 
+function renderHorizontalRule() {
+	$color = include("colors.php");
+
+	return "<hr size='1' noshade color='$color[border]' />";
+}
+
 function renderSupport() {
 	$color = include("colors.php");
 	$verticalSpacer = renderVerticalSpacer( "40px" );
 	$halfVerticalSpacer = renderVerticalSpacer( "20px" );
+	$horitontalLine = renderHorizontalRule();
 	$title = renderSecondaryTitle("Need help? No problem!", "center");
 	$content = "<p style='max-width:400px;'>" . renderRegularText("Our Happiness Engineers are here to answer your questions & help you set up your site.") . "</p>";
 	$buttonCta = renderTextButton("Contact support");
 
 	$support = <<<EOD
-		<hr size="1" noshade color="$color[border]" />
+		$horitontalLine
 		$verticalSpacer
+
 		<table cellpadding="0" cellspacing="0" width="100%">
 			<tr>
 				<td align="center">
