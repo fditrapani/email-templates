@@ -21,7 +21,6 @@
 
 	<?php
 		$listOfPages = renderUnorderedList( array( 
-				1 => '<a href="#" class="text-link">' . renderRegularText("Receipt") . '</a>', 
 				2 => '<a href="expired.php" class="text-link">' . renderRegularText("Expired") . '</a>' 
 		), "checkmark");
 
