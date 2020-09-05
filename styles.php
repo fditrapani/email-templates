@@ -9,9 +9,13 @@
 				}
 				</style>
 			<![endif]-->
-			
+
 			<style type="text/css">
 				@media only screen and (min-width: 600px) {
+					.contentContainer {
+						margin-top: 40px;
+					}
+
 					.contentCard {
 						padding-left: 20px;
 						padding-right: 20px;

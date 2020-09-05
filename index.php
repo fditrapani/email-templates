@@ -19,11 +19,12 @@
 
 	<?php
 		$listOfPages = renderUnorderedList( array( 
-				1 => '<a href="expired.php" class="text-link">' . renderRegularText("Expired") . '</a>',
-				2 => '<a href="expiring.php" class="text-link">' . renderRegularText("Expiring") . '</a>' 
+				1 => '<a href="expired.php" class="text-link">' . renderRegularText("Expired plan") . '</a>',
+				2 => '<a href="expiring.php" class="text-link">' . renderRegularText("Expiring plan") . '</a>',
+				3 => '<a href="missing-payment-info.php" class="text-link">' . renderRegularText("Missing payment information") . '</a>' 
 		), "checkmark");
 
-		echo renderEmailTemplate( "Email templates", $listOfPages );
+		echo renderEmailTemplate( "Email templates", $listOfPages . renderVerticalSpacer("30px") );
 	?>
 </body>
 </html>

@@ -21,15 +21,16 @@
 		$product = renderItem(
 			"WordPress.com Personal",
 			$color["error"],
-			"Expired Jul 2, 2020",
+			"Expires Aug 22, 2020",
 			"Plan for <a href='#' class='text-link' style='color:" . $color["text"] . "'>" . renderRegularText("Filippo Di Trapani") . "</a>",
 		);
-		$button_cta = renderRegularText("Add another month for $3", $color["white"], "14px");
+		$button_cta = renderRegularText("Add a payment method", $color["white"], "14px");
 		$button = renderPrimaryButton( $button_cta );
+		
 		$verticalSpacer = renderVerticalSpacer( "40px" );
 		$halfVerticalSpacer = renderVerticalSpacer( "20px" );
-		
 		$featureTitle = renderSecondaryTitle( "Don’t lose out" );
+		$featureParagraph = "<p style='margin-top: 0'>" . renderRegularText("Please note that if you choose not to renew, these features will be removed from your site.") . "</p>";
 		$featureList = renderUnorderedList( array( 
 				1 => renderRegularText("Ability to set filippodt.com as your primary address."), 
 				2 => renderRegularText("Remove WordPress.com ads from your site."),
@@ -47,14 +48,16 @@
 			$verticalSpacer
 			
 			$featureTitle
+			$featureParagraph
 			$featureList
 			$verticalSpacer
 
 			$billingContent
+
 			$supportContent
 		EOD;
 
-		echo renderEmailTemplate( "Your plan has expired", $content );
+		echo renderEmailTemplate( "Missing payment information", $content );
 	?>
 </body>
 </html>

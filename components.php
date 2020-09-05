@@ -27,8 +27,6 @@ function renderEmailTemplate( $title, $content ) {
 		<!-- emailTemplate start -->
 			<table width="100%" cellpadding="10" cellspacing="0" style="background: $color[background];" bgcolor="$color[background]">
 					<td align="center">
-						$halfVerticalSpacer
-
 						<!--[if gte mso 9]><table width="600px" cellpadding="0" cellspacing="0"><tr><td><![endif]-->
 						<table class="contentContainer" width="100%" cellpadding="0" cellspacing="0" style="background: $color[white]; max-width: 600px;" bgcolor="$color[white]">
 							<tr>
@@ -100,7 +98,7 @@ function renderEmailTitle( $title ) {
 	$emailTitle = <<<EOD
 		<!-- emailTitle start -->
 			<h1 style="margin-top:0; margin-bottom: 36px;">
-				<font face="Helvetica, Arial, sans-serif" size="5" style="font-size:28px">
+				<font face="Helvetica, Arial, sans-serif" size="5" style="font-size:28px; line-height: 1.2em;">
 					$title
 				</font>
 			</h1>
@@ -146,7 +144,7 @@ function renderBoldText( $text, $textColor = "#353535" ){
 
 function renderUnorderedList( $list, $icon ) {	
 	$listOpen = '
-		<table cellspacing="0" cellpadding="0" style="margin-bottom: 8px;">
+		<table cellspacing="0" cellpadding="0" style="margin-top: 8px;">
 			<tr valign="top">
 				<td style="padding-top: 1px">
 					<img src="/images/' . $icon . '.png" width="18px" height="18px"/>
@@ -167,23 +165,29 @@ function renderUnorderedList( $list, $icon ) {
 
 function renderItem( $itemTitle, $itemStatus, $itenStatusMessage, $itemDescription) {
 	$title = renderBoldText( $itemTitle );
+	$manageSubscriptionButton = renderTextButton("Settings");
 	$status = renderBoldText( $itenStatusMessage, $itemStatus );
 	$description = renderRegularText( $itemDescription );
 
 	$item = <<<EOD
 		<!-- emailTemplate start -->
-			<table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 20px">
-				<tr>
+			<table width="100%" cellpadding="0" cellspacing="0">
+				<tr valign="top">
 					<td>
 						$title
 					</td>
 					<td align="right">
-						$status
+						$manageSubscriptionButton
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" style="padding-bottom: 8px;">
+						$description
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2">
-						$description
+						$status
 					</td>
 				</tr>
 			</table>
@@ -193,27 +197,6 @@ function renderItem( $itemTitle, $itemStatus, $itenStatusMessage, $itemDescripti
 	return $item;
 }
 
-function renderItemVariant( $itemTitle, $itemDescription, $itemStatus, $statusColor ) {
-	$title = renderBoldText( $itemTitle );
-	$verticalSpacer = renderVerticalSpacer("0px");
-	$horizontalRule = renderHorizontalRule();
-	$description = renderRegularText( $itemDescription );
-	$status = renderBoldText( $itemStatus, $statusColor );
-	$manageSubscriptionButton = renderTextButton("Manage Subscription");
-
-	$itemVariant = <<<EOD
-		$horizontalRule
-		<p style="margin-top: 20px;">
-			$title <br/>
-			$description
-		</p>
-
-		<span style="margin-right:16px;">$status</span> $manageSubscriptionButton
-	EOD;
-
-	return $itemVariant;	
-}
-
 function renderPrimaryButton( $buttonCta ) {
 	$color = include("colors.php");
 
@@ -221,7 +204,7 @@ function renderPrimaryButton( $buttonCta ) {
 		<table cellpadding="0" cellspacing="0">
 			<tr>
 				<td class="primary-button" bgcolor="$color[link]" style="border-radius: 3px">
-					<a href="#" style="border-top: 10px solid $color[link]; border-bottom: 10px solid $color[link]; border-left: 40px solid $color[link]; border-right: 40px solid $color[link]; display:inline-block; text-decoration: none; border-radius: 3px; color: $color[white]; text-align: center">$buttonCta</a>
+					<a href="#" style="border-top: 10px solid $color[link]; border-bottom: 10px solid $color[link]; border-left: 40px solid $color[link]; border-right: 40px solid $color[link]; display:inline-block; text-decoration: none; border-radius: 3px; color: $color[white]; text-align: center;">$buttonCta</a>
 				</td>
 			</tr>
 		</table>
@@ -246,6 +229,32 @@ function renderHorizontalRule() {
 	return "<hr size='1' noshade color='$color[border]' />";
 }
 
+function renderBillingHistory( $title = "Billing history"){
+	$color = include("colors.php");
+	$halfVerticalSpacer = renderVerticalSpacer( "20px" );
+
+	$billingHistoryTitle = renderSecondaryTitle( $title );
+	$billingHistoryAccount = 
+		renderBoldText( "Account" ) . "<br>" . 
+		renderRegularText( "fditrapani" ) . "<br>" .
+		"<a href='#' class='text-link' style='color:" . $color["text"] . "; text-decoration: none'>" . renderRegularText("filippodt@gmail.com") . "</a>" . "<br>" .
+		" <a href='#' class='text-link' style='color:" . $color["text"] . "'>" . renderRegularText( "Manage account" ) . "</a>";
+	$billingHistoryReceipt = renderBoldText("Receipt") . "<br>" .
+		renderRegularText( "#19681643" ). "<br>" . 
+		" <a href='#' class='text-link' style='color:" . $color["text"] . "'>" . renderRegularText( "View receipt" ) . "</a>";
+
+
+	$billingContent = renderTwoColumn( $billingHistoryAccount, $billingHistoryReceipt);
+
+	$billingHistory = <<<EOD
+		$billingHistoryTitle
+		$billingContent
+		$halfVerticalSpacer		
+	EOD;
+
+	return $billingHistory;
+}
+
 function renderSupport() {
 	$color = include("colors.php");
 	$verticalSpacer = renderVerticalSpacer( "40px" );
@@ -266,7 +275,8 @@ function renderSupport() {
 					$halfVerticalSpacer
 					$title
 					$content
-					$buttonCta					
+					$buttonCta
+					$halfVerticalSpacer					
 				</td>
 			</tr>
 		</table>
