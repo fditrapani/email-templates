@@ -29,7 +29,8 @@ function renderEmailTemplate( $title, $content ) {
 					<td align="center">
 						$halfVerticalSpacer
 
-						<table width="100%" cellpadding="0" cellspacing="0" style="background: $color[white]; max-width: 600px;" bgcolor="$color[white]">
+						<!--[if gte mso 9]><table width="600px" cellpadding="0" cellspacing="0"><tr><td><![endif]-->
+						<table class="contentContainer" width="100%" cellpadding="0" cellspacing="0" style="background: $color[white]; max-width: 600px;" bgcolor="$color[white]">
 							<tr>
 								<td>
 									<table class="contentCard" width="100%" cellpadding="20" cellspacing="0">
@@ -56,6 +57,7 @@ function renderEmailTemplate( $title, $content ) {
 								</td>
 							</tr>
 						</table>
+						<!--[if gte mso 9]></td></tr></table><![endif]-->
 
 						$verticalSpacer
 						$footer

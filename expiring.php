@@ -15,9 +15,7 @@
 		
 </head>
 <body bgcolor="<?php echo $color['background']; ?>" style="direction: ltr; background-color: <?php echo $color['background']; ?>; margin: 0; padding: 0;">
-	<style type="text/css">
-		<?php echo renderStyles() ?>	
-	</style>
+	<?php echo renderStyles() ?>	
 
 	<?php
 		$product = renderItem(
