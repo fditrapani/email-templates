@@ -25,7 +25,7 @@
 		$product = renderItem(
 			"WordPress.com Personal",
 			$color["error"],
-			"Removed",
+			"Suspended",
 			"Plan for " . renderTextLink("Filippo Di Trapani"),
 			false,
 			true

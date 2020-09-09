@@ -28,7 +28,7 @@
 				7 => '<a href="expiring-card.php" class="text-link">' . renderRegularText("Expiring card") . '</a>',  
 				8 => '<a href="renewal-failure.php" class="text-link">' . renderRegularText("Renewal failure") . '</a>',
 				9 => '<a href="refund.php" class="text-link">' . renderRegularText("Refund") . '</a>',
-				10 => '<a href="updated-payment-method.php" class="text-link">' . renderRegularText("Updated billing information") . '</a>',
+				10 => '<a href="updated-billing-info.php" class="text-link">' . renderRegularText("Updated billing information") . '</a>',
 				11 => '<a href="cancelled-plan.php" class="text-link">' . renderRegularText("Cancelled plan") . '</a>', 
 				12 => '<a href="cancelled-subscriptions.php" class="text-link">' . renderRegularText("Cancelled subscription") . '</a>',
 				12 => '<a href="suspended.php" class="text-link">' . renderRegularText("Suspended site") . '</a>',

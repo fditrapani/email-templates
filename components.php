@@ -35,7 +35,7 @@ function renderEmailTemplate( $title, $content ) {
 										<tr>
 											<td align="left">
 												$halfVerticalSpacer
-												<a href="https://wordpress.com">
+												<a href="/">
 													<img src="images/wordpress-logo.png" alt="WordPress.com logo" width="170" border="0"/>
 												</a>
 											</td>
@@ -253,10 +253,22 @@ function renderTextLink( $text, $textColor = '#353535', $size = "16px" ){
 	return $textLink;
 }
 
+function renderHiddenTextLink( $text, $textColor = '#353535', $size = "16px" ){
+	$color = include("colors.php");
+	$text = renderRegularText( $text, $textColor, $size );
+	$textLink = <<<EOD
+		<a href='#'  class='text-link' style='color: $textColor; text-decoration: none;'>
+			$text
+		</a>
+	EOD;
+
+	return $textLink;
+}
+
 function renderHorizontalRule() {
 	$color = include("colors.php");
 
-	return "<hr size='1' noshade color='$color[border]' />";
+	return "<hr size='1' noshade color='$color[border]' style='margin: 0' />";
 }
 
 function renderBillingHistory( $title = "Billing history"){

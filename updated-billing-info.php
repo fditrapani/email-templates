@@ -37,30 +37,27 @@
 		$verticalSpacer = renderVerticalSpacer( "40px" );
 		$halfVerticalSpacer = renderVerticalSpacer( "20px" );
 		
-		$billingContent = renderBillingHistory();
-		
-		$recentPurchaseTitle = renderBoldText("Recently renewed");
-		$recentPurchaseDetails = renderItem( 
-			"filippodt.com", 
-			$color['success'],
-			"Renewed for $20 on July 22, 2020",
-			".com domain registration" );
+		$billingTitle = renderSecondaryTitle('Account information');
+		$billingContent = renderBoldText('fditrapani') . "<br/>" .
+		renderHiddenTextLink('filippodt@gmail.com') . "<br/>" .
+		renderTextLink('Manage account');
 
 		$supportContent = renderSupport();
 
 		$content = <<<EOD
 			$horizontalRule
 			$halfVerticalSpacer
+			$product
+			$halfVerticalSpacer
+			$horizontalRule
+			$halfVerticalSpacer
 			$creditCard
 			$halfVerticalSpacer
 			$horizontalRule
 			$halfVerticalSpacer
-			$product
-			$halfVerticalSpacer
-			$horizontalRule
-			$verticalSpacer
 			
 			$billingContent
+			$halfVerticalSpacer
 
 			$supportContent
 		EOD;
