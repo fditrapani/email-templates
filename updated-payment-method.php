@@ -18,43 +18,54 @@
 	<?php echo renderStyles() ?>	
 
 	<?php
+		$horizontalRule = renderHorizontalRule();
+		$creditCard = renderItem(
+			"VISA ending in 4020",
+			$color["success"],
+			"Added",
+			"Filippo Di Trapani",
+			false,
+			true
+		);
 		$product = renderItem(
 			"WordPress.com Personal",
-			$color["error"],
-			"Expired July 2, 2020",
-			"Plan for <a href='#' class='text-link' style='color:" . $color["text"] . "'>" . renderRegularText("Filippo Di Trapani") . "</a>",
-		);
-		$button_cta = renderRegularText("Add another month for $3", $color["white"], "14px");
-		$button = renderPrimaryButton( $button_cta );
+			$color["lightText"],
+			"Renews for C$60 on July 3, 2021",
+			"Plan for " . renderTextLink("Filippo Di Trapani"),
+		);		
+		
 		$verticalSpacer = renderVerticalSpacer( "40px" );
 		$halfVerticalSpacer = renderVerticalSpacer( "20px" );
 		
-		$featureTitle = renderSecondaryTitle( "Don’t lose out" );
-		$featureList = renderUnorderedList( array( 
-				1 => renderRegularText("Ability to set filippodt.com as your primary address."), 
-				2 => renderRegularText("Remove WordPress.com ads from your site."),
-				3 => renderRegularText("Access to live chat when you need immediate support."),
-				4 => renderRegularText("Increased storage space for your photos, audio files, or videos."), 
-		), "warning");
-
 		$billingContent = renderBillingHistory();
+		
+		$recentPurchaseTitle = renderBoldText("Recently renewed");
+		$recentPurchaseDetails = renderItem( 
+			"filippodt.com", 
+			$color['success'],
+			"Renewed for $20 on July 22, 2020",
+			".com domain registration" );
+
 		$supportContent = renderSupport();
 
 		$content = <<<EOD
+			$horizontalRule
+			$halfVerticalSpacer
+			$creditCard
+			$halfVerticalSpacer
+			$horizontalRule
+			$halfVerticalSpacer
 			$product
 			$halfVerticalSpacer
-			$button
+			$horizontalRule
 			$verticalSpacer
 			
-			$featureTitle
-			$featureList
-			$verticalSpacer
-
 			$billingContent
+
 			$supportContent
 		EOD;
 
-		echo renderEmailTemplate( "Your plan has expired", $content );
+		echo renderEmailTemplate( "You updated your billing details", $content );
 	?>
 </body>
 </html>

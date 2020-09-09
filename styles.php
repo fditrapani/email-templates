@@ -31,15 +31,22 @@
 				}
 
 				.primary-button a:hover,
-				.primary-button:hover  {
+				.primary-button a:hover font  {
 					background: $color[black] !important;
 					border-color: $color[black] !important;
+					color: $color[white] !important;
 				}
 
-				.primary-button:active,
-				.primary-button a:active {
+				.primary-button:hover,
+				.primary-button:active {
+					border-color: $color[white] !important;
+				}
+
+				.primary-button a:active,
+				.primary-button a:active font {
 					background: $color[link] !important;
 					border-color: $color[link] !important;
+					color: $color[white] !important;
 				} 
 			</style>
 		EOD;

@@ -21,7 +21,7 @@
 		$product = renderItem(
 			"WordPress.com Personal",
 			$color["error"],
-			"Expires Aug 22, 2020",
+			"Expires August 22, 2020",
 			"Plan for <a href='#' class='text-link' style='color:" . $color["text"] . "'>" . renderRegularText("Filippo Di Trapani") . "</a>",
 		);
 		$button_cta = renderRegularText("Add another year for $60", $color["white"], "14px");

@@ -98,7 +98,7 @@ function renderEmailTitle( $title ) {
 	$emailTitle = <<<EOD
 		<!-- emailTitle start -->
 			<h1 style="margin-top:0; margin-bottom: 36px;">
-				<font face="Helvetica, Arial, sans-serif" size="5" style="font-size:28px; line-height: 1.2em;">
+				<font face="Helvetica, Arial, sans-serif" size="5" style="font-size:28px; line-height: 1.2em; font-weight: 400">
 					$title
 				</font>
 			</h1>
@@ -163,11 +163,16 @@ function renderUnorderedList( $list, $icon ) {
 	return $unorderedList;
 }
 
-function renderItem( $itemTitle, $itemStatus, $itenStatusMessage, $itemDescription) {
+function renderItem( $itemTitle, $itemStatus, $itenStatusMessage, $itemDescription, $showSubscription = true, $showStatusInColumn = false) {
 	$title = renderBoldText( $itemTitle );
-	$manageSubscriptionButton = renderTextButton("Settings");
-	$status = renderBoldText( $itenStatusMessage, $itemStatus );
+	$manageSubscriptionButton = $showSubscription ? renderTextButton("Settings") : "" ;
+	$status = renderRegularText( $itenStatusMessage, $itemStatus );
+
+	$sideBarStatus = $showStatusInColumn ? $status : null;
+	$bottomStatus = !$showStatusInColumn ? "<tr><td colspan='2'>$status</td></tr>" : null;
+
 	$description = renderRegularText( $itemDescription );
+	$descriptionPadding = $showStatusInColumn ? "0" : "8px";
 
 	$item = <<<EOD
 		<!-- emailTemplate start -->
@@ -178,18 +183,15 @@ function renderItem( $itemTitle, $itemStatus, $itenStatusMessage, $itemDescripti
 					</td>
 					<td align="right">
 						$manageSubscriptionButton
+						$sideBarStatus						
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2" style="padding-bottom: 8px;">
+					<td colspan="2" style="padding-bottom: $descriptionPadding;">
 						$description
 					</td>
 				</tr>
-				<tr>
-					<td colspan="2">
-						$status
-					</td>
-				</tr>
+				$bottomStatus
 			</table>
 		<!-- emailTemplate end -->
 	EOD;
@@ -213,6 +215,22 @@ function renderPrimaryButton( $buttonCta ) {
 	return $button;
 }
 
+function renderSecondaryButton( $buttonCta ) {
+	$color = include("colors.php");
+
+	$button = <<<EOD
+		<table cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="primary-button" bgcolor="$color[white]" style="border-radius: 3px; border: 1px solid $color[text]">
+					<a href="#" style="border-top: 10px solid $color[white]; border-bottom: 10px solid $color[white]; border-left: 40px solid $color[white]; border-right: 40px solid $color[white]; display:inline-block; text-decoration: none; border-radius: 3px; color: $color[text]; text-align: center;">$buttonCta</a>
+				</td>
+			</tr>
+		</table>
+	EOD;
+
+	return $button;
+}
+
 function renderTextButton( $text, $textColor = "#1282D6" ){
 		$color = include("colors.php");
 
@@ -221,6 +239,18 @@ function renderTextButton( $text, $textColor = "#1282D6" ){
 		EOD;
 
 	return $textButton;
+}
+
+function renderTextLink( $text, $textColor = '#353535', $size = "16px" ){
+	$color = include("colors.php");
+	$text = renderRegularText( $text, $textColor, $size );
+	$textLink = <<<EOD
+		<a href='#'  class='text-link' style='color: $textColor'>
+			$text
+		</a>
+	EOD;
+
+	return $textLink;
 }
 
 function renderHorizontalRule() {
@@ -295,8 +325,8 @@ function renderFooter() {
 		"<div align='right'><a href='#'><img src='images/app-store.png' width='140px' border='0'/></a></div>", 
 		"<a href='#'><img src='images/play-store.png' width='140px' border='0'/></a>" );
 
-	$automatticDetails = "<a href='https://automattic.com' class='text-link' style='color: $color[link]'>" . renderRegularText( "Automattic, Inc.", "#1282D6" ) . "</a><br/>" .
-	renderRegularText(  "60 29th St. #343, San Francisco, CA 94110 ", $color['link'], "14px" );
+	$automatticDetails = "<a href='https://automattic.com' class='text-link' style='color: $color[text]'>" . renderRegularText( "Automattic, Inc.", $color["text"] ) . "</a><br/>" .
+	renderRegularText(  "60 29th St. #343, San Francisco, CA 94110 ", $color['text'], "14px" );
 
 	$loveNote = renderRegularText( "Sent with <font color='$color[link]'>&hearts;</font> from your friends at WordPress.com",  );
 

@@ -21,15 +21,16 @@
 		$product = renderItem(
 			"WordPress.com Personal",
 			$color["error"],
-			"Expired July 2, 2020",
-			"Plan for <a href='#' class='text-link' style='color:" . $color["text"] . "'>" . renderRegularText("Filippo Di Trapani") . "</a>",
+			"Expires August 22, 2020",
+			"Plan for " . renderTextLink("Filippo Di Trapani"),
 		);
-		$button_cta = renderRegularText("Add another month for $3", $color["white"], "14px");
+		$button_cta = renderRegularText("Add another year for $60", $color["white"], "14px");
 		$button = renderPrimaryButton( $button_cta );
+		
 		$verticalSpacer = renderVerticalSpacer( "40px" );
 		$halfVerticalSpacer = renderVerticalSpacer( "20px" );
-		
 		$featureTitle = renderSecondaryTitle( "Don’t lose out" );
+		$featureParagraph = "<p style='margin-top: 0'>" . renderRegularText("Your plan will continue to run until it expires. If you choose not to renew, these features will be removed from your site.") . "</p>";
 		$featureList = renderUnorderedList( array( 
 				1 => renderRegularText("Ability to set filippodt.com as your primary address."), 
 				2 => renderRegularText("Remove WordPress.com ads from your site."),
@@ -38,6 +39,15 @@
 		), "warning");
 
 		$billingContent = renderBillingHistory();
+		
+		$recentPurchaseTitle = renderBoldText("Recently renewed");
+		$horizontalRule = renderHorizontalRule();
+		$recentPurchaseDetails = renderItem( 
+			"filippodt.com", 
+			$color['success'],
+			"Renewed for $20 on July 22, 2020",
+			".com domain registration" );
+
 		$supportContent = renderSupport();
 
 		$content = <<<EOD
@@ -47,14 +57,22 @@
 			$verticalSpacer
 			
 			$featureTitle
+			$featureParagraph
 			$featureList
 			$verticalSpacer
 
 			$billingContent
+			
+			$recentPurchaseTitle
+			$horizontalRule
+			$halfVerticalSpacer
+			$recentPurchaseDetails
+			$halfVerticalSpacer
+
 			$supportContent
 		EOD;
 
-		echo renderEmailTemplate( "Your plan has expired", $content );
+		echo renderEmailTemplate( "You cancelled your plan", $content );
 	?>
 </body>
 </html>

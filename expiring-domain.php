@@ -19,25 +19,34 @@
 
 	<?php
 		$product = renderItem(
-			"WordPress.com Personal",
+			"filippodt.com",
 			$color["error"],
-			"Expired July 2, 2020",
-			"Plan for <a href='#' class='text-link' style='color:" . $color["text"] . "'>" . renderRegularText("Filippo Di Trapani") . "</a>",
+			"Expires August 22, 2020",
+			"Primary domain for <a href='#' class='text-link' style='color:" . $color["text"] . "'>" . renderRegularText("Filippo Di Trapani") . "</a>",
 		);
-		$button_cta = renderRegularText("Add another month for $3", $color["white"], "14px");
+		$button_cta = renderRegularText("Add another year for all", $color["white"], "14px");
 		$button = renderPrimaryButton( $button_cta );
+		
 		$verticalSpacer = renderVerticalSpacer( "40px" );
 		$halfVerticalSpacer = renderVerticalSpacer( "20px" );
-		
 		$featureTitle = renderSecondaryTitle( "Don’t lose out" );
+		$featureParagraph = "<p style='margin-top: 0'>" . renderRegularText("Please note that if you choose not to renew:") . "</p>";
 		$featureList = renderUnorderedList( array( 
-				1 => renderRegularText("Ability to set filippodt.com as your primary address."), 
-				2 => renderRegularText("Remove WordPress.com ads from your site."),
-				3 => renderRegularText("Access to live chat when you need immediate support."),
-				4 => renderRegularText("Increased storage space for your photos, audio files, or videos."), 
+				1 => renderRegularText("You will loose your claim to filippodt.com."), 
+				2 => renderRegularText("Your domain will become available for other people to register."), 
+				3 => renderRegularText("Vistors to") . " <a href='#'>" . renderRegularText("Filippo Di Trapani") . "</a> " . renderRegularText("will not get redirected to your site." ),
 		), "warning");
 
 		$billingContent = renderBillingHistory();
+		
+		$recentPurchaseTitle = renderBoldText("Recently renewed");
+		$horizontalRule = renderHorizontalRule();
+		$recentPurchaseDetails = renderItem( 
+			"WordPress.com Personal", 
+			$color['success'],
+			"Renewed for $60 on July 22, 2020",
+			renderRegularText("Plan for ") . " <a href='#'>" . renderRegularText("Filippo Di Trapani") . "</a> "  );
+
 		$supportContent = renderSupport();
 
 		$content = <<<EOD
@@ -47,14 +56,22 @@
 			$verticalSpacer
 			
 			$featureTitle
+			$featureParagraph
 			$featureList
 			$verticalSpacer
 
 			$billingContent
+			
+			$recentPurchaseTitle
+			$horizontalRule
+			$halfVerticalSpacer
+			$recentPurchaseDetails
+			$halfVerticalSpacer
+
 			$supportContent
 		EOD;
 
-		echo renderEmailTemplate( "Your plan has expired", $content );
+		echo renderEmailTemplate( "Your domain is about to expire", $content );
 	?>
 </body>
 </html>

@@ -18,18 +18,33 @@
 	<?php echo renderStyles() ?>	
 
 	<?php
+		$horizontalRule = renderHorizontalRule();
+		$verticalSpacer = renderVerticalSpacer( "40px" );
+		$halfVerticalSpacer = renderVerticalSpacer( "20px" );
+
 		$product = renderItem(
 			"WordPress.com Personal",
 			$color["error"],
-			"Expired July 2, 2020",
-			"Plan for <a href='#' class='text-link' style='color:" . $color["text"] . "'>" . renderRegularText("Filippo Di Trapani") . "</a>",
+			"Expires August 22, 2020",
+			"Plan for " . renderTextLink("Filippo Di Trapani")
 		);
-		$button_cta = renderRegularText("Add another month for $3", $color["white"], "14px");
-		$button = renderPrimaryButton( $button_cta );
-		$verticalSpacer = renderVerticalSpacer( "40px" );
-		$halfVerticalSpacer = renderVerticalSpacer( "20px" );
-		
+
+		$secondary_button_cta = renderRegularText("Reactivate subscription", $color["text"], "14px");
+		$secondary_button = renderSecondaryButton( $secondary_button_cta );
+
+		$domain = renderItem(
+			"filippodt.com",
+			$color["error"],
+			"Expires August 28, 2020",
+			"Primary domain for " . renderTextLink("Filippo Di Trapani")
+		);
+		$domain_button = renderSecondaryButton( $secondary_button_cta );
+
+		$button_cta = renderRegularText("Reactivate these subscriptions", $color["white"], "14px");
+		$button = renderPrimaryButton( $button_cta );		
+
 		$featureTitle = renderSecondaryTitle( "Don’t lose out" );
+		$featureParagraph = "<p style='margin-top: 0'>" . renderRegularText("Your upgrades will continue to run until they expires. If you choose not to renew, these features will be removed from your site.") . "</p>";
 		$featureList = renderUnorderedList( array( 
 				1 => renderRegularText("Ability to set filippodt.com as your primary address."), 
 				2 => renderRegularText("Remove WordPress.com ads from your site."),
@@ -38,23 +53,38 @@
 		), "warning");
 
 		$billingContent = renderBillingHistory();
+
 		$supportContent = renderSupport();
 
 		$content = <<<EOD
-			$product
+			$horizontalRule
 			$halfVerticalSpacer
+			$product
+			<p style="margin-bottom: 0">$secondary_button</p>
+			$halfVerticalSpacer
+			$horizontalRule
+			$halfVerticalSpacer
+			$domain
+			<p style="margin-bottom: 0">$domain_button</p>
+			$halfVerticalSpacer
+			$horizontalRule
+			$halfVerticalSpacer
+
+
 			$button
 			$verticalSpacer
 			
 			$featureTitle
+			$featureParagraph
 			$featureList
 			$verticalSpacer
 
 			$billingContent
+
 			$supportContent
 		EOD;
 
-		echo renderEmailTemplate( "Your plan has expired", $content );
+		echo renderEmailTemplate( "You cancelled your subscription", $content );
 	?>
 </body>
 </html>
