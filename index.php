@@ -34,7 +34,7 @@
 				12 => '<a href="suspended.php" class="text-link">' . renderRegularText("Suspended site") . '</a>',
 		), "checkmark");
 
-		echo renderEmailTemplate( "Email templates", $listOfPages . renderVerticalSpacer("30px") );
+		echo renderEmailTemplate( "Email templates", $listOfPages . renderVerticalSpacer("30px"), false );
 	?>
 </body>
 </html>

@@ -16,12 +16,12 @@ function renderVerticalSpacer( $size = "20px" ) {
 	return $verticalSpace;
 }
 
-function renderEmailTemplate( $title, $content ) {	
+function renderEmailTemplate( $title, $content, $showFooter = true ) {	
 	$color = include("colors.php");
 	$verticalSpacer = renderVerticalSpacer("40px");
 	$halfVerticalSpacer = renderVerticalSpacer();
 	$emailTitle = renderEmailTitle( $title );
-	$footer = renderFooter();
+	$footer = $showFooter ? renderFooter() : null;
 
 	$emailTemplate = <<<EOD
 		<!-- emailTemplate start -->

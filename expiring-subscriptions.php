@@ -54,13 +54,6 @@
 		), "warning");
 
 		$billingContent = renderBillingHistory();
-		
-		$recentPurchaseTitle = renderBoldText("Recently renewed");
-		$recentPurchaseDetails = renderItem( 
-			"filippodt.com", 
-			$color['success'],
-			"Renewed for $20 on July 22, 2020",
-			".com domain registration" );
 
 		$supportContent = renderSupport();
 

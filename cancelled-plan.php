@@ -63,7 +63,7 @@
 
 			$billingContent
 			
-			$recentPurchaseTitle
+			<p style="margin: 0 0 4px 0">$recentPurchaseTitle</p>
 			$horizontalRule
 			$halfVerticalSpacer
 			$recentPurchaseDetails
