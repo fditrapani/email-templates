@@ -222,7 +222,7 @@ function renderSecondaryButton( $buttonCta ) {
 		<table cellpadding="0" cellspacing="0">
 			<tr>
 				<td class="primary-button" bgcolor="$color[white]" style="border-radius: 3px; border: 1px solid $color[text]">
-					<a href="#" style="border-top: 10px solid $color[white]; border-bottom: 10px solid $color[white]; border-left: 40px solid $color[white]; border-right: 40px solid $color[white]; display:inline-block; text-decoration: none; border-radius: 3px; color: $color[text]; text-align: center;">$buttonCta</a>
+					<a href="#" style="border-top: 5px solid $color[white]; border-bottom: 5px solid $color[white]; border-left: 10px solid $color[white]; border-right: 10px solid $color[white]; display:inline-block; text-decoration: none; border-radius: 3px; color: $color[text]; text-align: center;">$buttonCta</a>
 				</td>
 			</tr>
 		</table>
